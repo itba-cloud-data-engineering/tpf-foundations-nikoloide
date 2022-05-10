@@ -8,7 +8,7 @@ Para esto utilizaré los siguientes datasets:
 3. Tipo de cambio diario $ a USD :dollar:
 4. Nomenclador actividad AFIP
 
-![DER](assets/images/DER itba ej1.png)
+![DER](assets/images/DER_itba_ej1.png)
 
 ### Framing Problems
 
