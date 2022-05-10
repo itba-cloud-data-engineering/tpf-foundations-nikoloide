@@ -3,12 +3,12 @@
 Para la realización seleccioné los dataset de https://datos.gob.ar/dataset/ sobre la evolución salarial por industria en la Republica Argentina.
 
 Para esto utilizaré los siguientes datasets:
-- Salarios promedio y mediano, por sector de actividad :money_with_wings:
-- IPC base 2016
-- Tipo de cambio diario $ a USD :dollar:
-- Nomenclador actividad AFIP
+1. Salarios promedio y mediano, por sector de actividad :money_with_wings:
+2. IPC base 2016
+3. Tipo de cambio diario $ a USD :dollar:
+4. Nomenclador actividad AFIP
 
-![DER](/assets/images/DER itba ej1.png)
+![DER](assets/images/DER itba ej1.png)
 
 ### Framing Problems
 
