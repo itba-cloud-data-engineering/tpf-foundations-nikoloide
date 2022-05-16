@@ -12,6 +12,14 @@ services:
       timeout: 5s
       retries: 5
 
+  insert_data:
+    build: ./load_db/
+    networks:
+      - ns-net
+    depends_on:
+      db:
+        condition: service_healthy 
+
 networks:
   ns-net:
     driver: bridge  
