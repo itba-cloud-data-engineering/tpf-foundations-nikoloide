@@ -14,5 +14,5 @@ Para esto utilizaré los siguientes datasets:
 
 - Hay diferencia en la tendencia temporal entre los salarios reales en pesos y en USD? :chart_with_upwards_trend:
 - Cual es el spread histórico entre la inflación y los aumentos del salario promedio?
-- Que actividades económicas registran el mayor salario real en el ultimo año?
-- Cual es la actividad económica con mayor crecimiento de salarios promedio en terminos reales?
+- Que actividades económicas registran el mayor y el menor salario real en el ultimo mes?
+- Cuales son las actividades económicas con mayor crecimiento de salarios promedio en terminos reales en el último año?

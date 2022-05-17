@@ -20,6 +20,18 @@ services:
       db:
         condition: service_healthy 
 
+  analisis:
+    build: ./analitica/
+    ports:
+      - "8888:8888"
+    networks:
+      - ns-net
+    volumes:
+      - "./notebook:/notebook"
+    depends_on:
+      insert_data:
+        condition: service_started 
+
 networks:
   ns-net:
     driver: bridge  
