@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  db:
+    build: .
+    ports:
+          - '5432:5432'
+    networks:
+      - ns-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready --dbname $$POSTGRES_DB --username $$POSTGRES_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  insert_data:
+    build: ./load_db/
+    networks:
+      - ns-net
+    depends_on:
+      db:
+        condition: service_healthy 
+
+  analisis:
+    build: ./analitica/
+    ports:
+      - "8888:8888"
+    networks:
+      - ns-net
+    volumes:
+      - "./notebook:/notebook"
+    depends_on:
+      insert_data:
+        condition: service_started 
+
+networks:
+  ns-net:
+    driver: bridge  

@@ -74,3 +74,49 @@ Este script de reporting debe correrse mediante una imagen de Docker con `docker
 ## Ejercicio 6: Documentación y ejecución end2end
 
 Agregue una sección al README.md comentando como resolvió los ejercicios, linkeando al archivo con la descripción del dataset y explicando como ejecutar un script de BASH para ejecutar todo el proceso end2end desde la creación del container, operaciones de DDL, carga de datos y consultas. Para esto crear el archivo de BASH correspondiente. 
+
+
+## RESOLUCION
+
+Los datos utilizados corresponden al servicio de [Datos Argentina](https://catalog.data.gov/dataset), que brinda una serie de datasets públicos.
+
+1. Como primer paso creo un container que levanta Postgres 12.7
+2. Luego genero las tablas de acuerdo al dataset definido, generando el siguiente schema
+
+![DER](assets/images/DER_itba_ej1.png)
+
+3. Mediante un script de Python me conecto directamente al servicio de datos públicos citado anteriormente y obtengo los datasest que populan las tablas generadas en el paso anterior.
+
+4. Genero una serie de consultas SQL y con la librerias Bokeh y Plotly grafico plots para responder las consultas de negocio. Esto esta incluido en el container y al ejecutarlo permite acceder a la notebook con los resultados.
+En este punto tuve algunas dificultades, porque mi primer idea era que ejecute un servidor [Panel](https://panel.holoviz.org/), si bien el docker ejecutaba correctamente, pero tuve inconvenientes para acceder a la aplicacion servida. Por lo tanto como alternativa se visualizan el output en una notebook de jupyter.
+
+## Pasos para ejecutar el proceso
+
+1. Descargar el contenido del repo
+2. Posicionados sobre la carpeta buildeamos la solución
+    - docker-compose build
+3. Desplegamos la solución
+    - docker-compose up
+4. Finalizada la ejecución sin errores, podremos acceder al jupyter notebook
+    - [link](http://127.0.0.1:8888/notebooks/notebook.ipynb)
+
+
+## Orquestacion
+
+`docker-compose.yml` contiene todas las instrucciones del proceso de ejecución.
+
+1. db: levantamos la imagen de postgres y creamos las tablas
+2. insert_data: populamos las tablas
+3. analisis: generamos las queries de consulta de las tablas generadas y disponibilizamos una jupyter notebook para visualizar los gráficos de análisis
+
+### Consideraciones
+
+- Generé dependencias entre los procesos con el término `DEPENDS_ON`para evitar que se solapen y se ejecuten en cascada.
+- Al insertar los datos copio el SQL en la carpeta `docker-entrypoint-initdb` ya que de otra manera no encontraba el archivo y no generaba las tablas
+
+
+### Notas
+
+- Perdón la demora pero comencé la práctica dias despues y la verdad me resultó desafiante, mas que nada la parte de Docker en la cual tengo poca experiencia y requirió mucho tiempo de investigación. Es mas estoy seguro de que tengo muchos puntos por mejorar en el TP.
+- Obviamente se podria plantear mejoras en la solución, como hacer controles de carga, no definir el logueo en el script, reducir harcodeos y algunos otros puntos mas que mi conocimiento no me permite detectar.
+
